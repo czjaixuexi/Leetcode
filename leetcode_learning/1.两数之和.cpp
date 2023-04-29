@@ -28,10 +28,6 @@ public:
 			}
 			map[nums[i]] = i; //若不存在，则插入数据
 		}
-
-
-
-		
 		return {};
         
 	}
