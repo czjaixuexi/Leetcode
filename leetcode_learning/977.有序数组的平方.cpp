@@ -13,30 +13,28 @@ using namespace std;
  */
 
 // @lc code=start
-class Solution {
+class Solution
+{
 public:
-    vector<int> sortedSquares(vector<int>& nums) {  
-        for(auto &k:nums){
-            k=k*k;
-        }
-        const int len=nums.size()-1;
-        vector<int> res(len+1);
-        int k=len;
-        
-        //双指针遍历，归并数组
-        for(int i=0,j=len;i<=j;){
-            if(nums[i]>nums[j]) 
-            {res[k--]=nums[i];
-                i++;   
-                }
-            else{
-                res[k--]=nums[j];
+    vector<int> sortedSquares(vector<int> &nums)
+    {
+        vector<int> res(nums.size());
+        int k = nums.size() - 1;
+        // 双指针遍历，一个从头，一个从尾，每次比较两个指针对应的平方数，选择较大的那个逆序放入答案并移动指针
+        for (int i = 0, j = nums.size() - 1; i <= j;)
+        {
+            if (nums[i] * nums[i] > nums[j] * nums[j])
+            {
+                res[k--] = nums[i] * nums[i];
+                i++;
+            }
+            else
+            {
+                res[k--] = nums[j] * nums[j];
                 j--;
             }
         }
-
         return res;
     }
 };
 // @lc code=end
-
