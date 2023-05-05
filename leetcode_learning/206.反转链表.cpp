@@ -30,7 +30,6 @@ public:
             cur = temp;
         }
         return pre;
-        
     }
 };
 // @lc code=end

@@ -23,28 +23,31 @@ using namespace std;
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-class Solution {
+class Solution
+{
 public:
-    ListNode* removeElements(ListNode* head, int val) {
-    //处理头结点
-    while (nullptr != head && head->val == val) {
-             head = head->next;
-     }
-
-       ListNode* pre = new ListNode(0);
-       ListNode* cur=head;
-       pre->next=cur;
-       while(cur!=nullptr){
-           if(cur->val==val){
-               pre->next=cur->next;
-           }
-           else{
-               pre=cur;
-           }
-        cur=cur->next;
-       }
-       return head;
+    ListNode *removeElements(ListNode *head, int val)
+    {
+        // 设置虚拟头结点
+        ListNode *dummyHead = new ListNode();
+        dummyHead->next = head;
+        ListNode *cur = dummyHead;
+        while (cur->next != nullptr)
+        {
+            if (cur->next->val == val)
+            {
+                ListNode *temp = cur->next;
+                cur->next = cur->next->next;
+                delete temp;
+            }
+            else
+            {
+                cur = cur->next;
+            }
+        }
+        head = dummyHead->next;
+        delete dummyHead;
+        return head;
     }
 };
 // @lc code=end
-
